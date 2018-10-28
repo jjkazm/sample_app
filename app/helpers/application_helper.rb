@@ -1,5 +1,5 @@
 module ApplicationHelper
-  def full_title(title)
+  def full_title(title = "")
     generic = "Ruby on Rails Tutorial Sample App"
     if title.empty?
       generic
