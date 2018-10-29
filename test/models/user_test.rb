@@ -52,4 +52,11 @@ class UserTest < ActiveSupport::TestCase
     dup_user.email = dup_user.email.upcase
     assert_not dup_user.valid?
   end
+
+  test "email should be saved as downcase" do
+    upcase_email = "UPCASE@wp.pl"
+    @user.email = upcase_email
+    @user.save
+    assert_equal upcase_email.downcase, @user.reload.email
+  end
 end
