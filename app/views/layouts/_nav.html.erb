@@ -13,7 +13,7 @@
               <li><%= link_to "Profile", current_user%></li>
               <li><%= link_to "Settings", "#"%></li>
               <li role="separator" class="divider"></li>
-              <li><%= link_to "Log out", logout_path, method: :destroy%></li>
+              <li><%= link_to "Log out", logout_path, method: :delete%></li>
             </ul>
           </li>
         <% else %>
