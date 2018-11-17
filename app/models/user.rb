@@ -35,5 +35,10 @@ class User < ApplicationRecord
     BCrypt::Password.new(self.remember_digest) == string
   end
 
+  # Forgets user
+  def forget
+    update_attribute(:remember_digest, nil)
+  end
+
 
 end
