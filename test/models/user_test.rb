@@ -69,4 +69,8 @@ class UserTest < ActiveSupport::TestCase
     @user.password = @user.password_confirmation = "q" * 5
     assert_not @user.valid?
   end
+
+  test "authenticated? should return false for user with nil remember_token" do
+    assert_not @user.authenticated?('some_random_token')
+  end
 end
