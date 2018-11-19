@@ -32,8 +32,8 @@ class User < ApplicationRecord
   end
 
   def authenticated?(string)
-    return false unless
-      !!remember_digest && BCrypt::Password.new(self.remember_digest) == string
+    return if remember_digest.nil?
+    BCrypt::Password.new(self.remember_digest) == string
   end
 
   # Forgets user
