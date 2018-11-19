@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, except:[:new, :create]
-  
+
   def show
     @user = User.find(params[:id])
   end
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
       flash[:success] = "User has been updated"
       redirect_to user_path
     else
-      render 'edit'
+      render 'users/edit'
     end
   end
 
