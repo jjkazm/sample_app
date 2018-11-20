@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, except:[:new, :create]
+  before_action :logged_in_user, only:[:edit, :update]
+  before_action :correct_user, only:[:edit, :update]
 
   def show
     @user = User.find(params[:id])
@@ -42,5 +44,19 @@ class UsersController < ApplicationController
 
     def set_user
       @user = User.find(params[:id])
+    end
+
+    def logged_in_user
+      unless helpers.logged_in?
+        flash[:danger] = "Please login first"
+        redirect_to login_path
+      end
+    end
+
+    def correct_user
+      unless helpers.current_user?(@user)
+        flash[:danger] = "You don't have permission to do that"
+        redirect_to root_path
+      end
     end
 end
