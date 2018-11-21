@@ -5,15 +5,20 @@ jurek:
   email: jurek@wp.pl
   password_digest: <%= User.digest('haslo1') %>
   admin: true
-
+  activated: true
+  activated_at: <%= Time.zone.now %>
 agatka:
   name: Agatka
   email: agatka@wp.pl
   password_digest: <%= User.digest('haslo1') %>
+  activated: true
+  activated_at: <%= Time.zone.now %>
 
 <% 30.times do |n| %>
 user_<%= n %>:
   name: <%= "User_#{n}" %>
   email: <%= "user#{n}@wp.pl" %>
   password_digest: <%= User.digest('haslo1') %>
+  activated: true
+  activated_at: <%= Time.zone.now %>
 <% end %>
