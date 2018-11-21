@@ -9,3 +9,10 @@ agatka:
   name: Agatka
   email: agatka@wp.pl
   password_digest: <%= User.digest('haslo1') %>
+
+<% 30.times do |n| %>
+user_<%= n %>:
+  name: <%= "User_#{n}" %>
+  email: <%= "user#{n}@wp.pl" %>
+  password_digest: <%= User.digest('haslo1') %>
+<% end %>
