@@ -19,8 +19,12 @@ class UsersEditTest < ActionDispatch::IntegrationTest
 
   test 'is succesful with valid input and friendly redirect' do
     get edit_user_path @user
+    assert_not_nil session[:forwarding_url]
+    follow_redirect!
     assert_template 'sessions/new'
     log_in_as @user
+    follow_redirect!
+    assert_nil session[:forwarding_url]
     assert_template 'users/edit'
     patch user_path, params: {user: {name: "Kuba", email: "kuba@wp.pl", password: "",
                                           password_confirmation: ""}}
