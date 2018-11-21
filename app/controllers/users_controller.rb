@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user, except:[:new, :create]
-  before_action :logged_in_user, only:[:edit, :update]
+  before_action :set_user, except:[:new, :create, :index]
+  before_action :logged_in_user, only:[:edit, :update, :index]
   before_action :correct_user, only:[:edit, :update]
 
   def show
@@ -35,6 +35,10 @@ class UsersController < ApplicationController
     else
       render 'users/edit'
     end
+  end
+
+  def index
+    @users = User.all
   end
 
   private
