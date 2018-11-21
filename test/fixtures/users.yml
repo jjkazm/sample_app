@@ -4,6 +4,7 @@ jurek:
   name: Jurek
   email: jurek@wp.pl
   password_digest: <%= User.digest('haslo1') %>
+  admin: true
 
 agatka:
   name: Agatka
