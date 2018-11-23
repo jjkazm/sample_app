@@ -71,6 +71,6 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "authenticated? should return false for user with nil remember_token" do
-    assert_not @user.authenticated?('some_random_token')
+    assert_not @user.authenticated?(:remember, 'some_random_token')
   end
 end
