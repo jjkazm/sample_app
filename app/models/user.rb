@@ -49,6 +49,15 @@ class User < ApplicationRecord
     self.activation_digest = User.digest(activation_token)
   end
 
+  def activate
+    update_columns(activated: true, activated_at: Time.zone.now)
+  end
+
+  def send_activation_link
+    UserMailer.account_activation(self).deliver_now
+  end
+
+
   private
 
 
