@@ -73,4 +73,12 @@ class UserTest < ActiveSupport::TestCase
   test "authenticated? should return false for user with nil remember_token" do
     assert_not @user.authenticated?(:remember, 'some_random_token')
   end
+
+  test 'associated micropost should be destroyed' do
+    @user.save
+    @user.microposts.create(content: "Best post in the world")
+    assert_difference 'Micropost.count', -1 do
+      @user.destroy
+    end
+  end
 end

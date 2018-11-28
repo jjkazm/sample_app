@@ -1,0 +1,17 @@
+apple:
+  content: "I like apples"
+  created_at: <%= 10.minutes.ago %>
+
+secundo:
+  content: "The second post"
+  created_at: <%= 2.hours.ago %>
+
+best:
+  content: "This is the best article"
+  created_at: <%= 3.hours.ago %>
+
+most_recent:
+  content: "Most recent post"
+  created_at: <%= Time.zone.now %>
+
+  
