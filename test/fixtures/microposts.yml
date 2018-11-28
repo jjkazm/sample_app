@@ -1,17 +1,26 @@
 apple:
   content: "I like apples"
   created_at: <%= 10.minutes.ago %>
+  user: jurek
 
 secundo:
   content: "The second post"
   created_at: <%= 2.hours.ago %>
+  user: jurek
 
 best:
   content: "This is the best article"
   created_at: <%= 3.hours.ago %>
+  user: jurek
 
 most_recent:
   content: "Most recent post"
   created_at: <%= Time.zone.now %>
+  user: jurek
 
-  
+<% 40.times do |n| %>
+post-<%= n %>:
+  content: <%= Faker::Lorem.sentence(5) %>
+  created_at: <%= 40.days.ago %>
+  user: jurek
+<% end %>
