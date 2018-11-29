@@ -78,6 +78,12 @@ class User < ApplicationRecord
     update_attribute(:reset_digest, nil)
   end
 
+
+  # Defines a proto-feed
+  def feed
+    Micropost.where('user_id = ?', id)
+  end
+
   private
 
 
