@@ -59,13 +59,7 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
     end
 
-    def logged_in_user
-      unless helpers.logged_in?
-        helpers.remember_url
-        flash[:danger] = "Please login first"
-        redirect_to login_path
-      end
-    end
+  
 
     # Checks if user is the same as user on which some action has to be performed
     def correct_user
