@@ -18,6 +18,27 @@ most_recent:
   created_at: <%= Time.zone.now %>
   user: jurek
 
+book:
+  content: "The dullets book ever"
+  created_at: <%= 10.minutes.ago %>
+  user: agatka
+
+film:
+  content: "I like this movie"
+  created_at: <%= 2.weeks.ago %>
+  user: agatka
+
+travel:
+  content: "I like to travel"
+  created_at: <%= 1.day.ago %>
+  user: kuba
+
+idea:
+  content: "So many ideas"
+  created_at: <%= 6.months.ago %>
+  user: kuba
+
+
 <% 40.times do |n| %>
 post-<%= n %>:
   content: <%= Faker::Lorem.sentence(5) %>

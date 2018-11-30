@@ -13,6 +13,12 @@ agatka:
   password_digest: <%= User.digest('haslo1') %>
   activated: true
   activated_at: <%= Time.zone.now %>
+kuba:
+  name: Kuba
+  email: kazmierczak88@gmail.com
+  password_digest: <%= Time.zone.now %>
+  activated: true
+  activated_at: <%= Time.zone.now %>
 
 <% 30.times do |n| %>
 user_<%= n %>:
