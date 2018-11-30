@@ -12,6 +12,7 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
     log_in_as @user1
     get root_path
     assert_select 'div.pagination'
+    assert_select 'input[type=file]'
     # Unsuccesfull post
     assert_no_difference "Micropost.count" do
       post microposts_path, params: { micropost: { content: "" }}
@@ -19,12 +20,18 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
     assert_template 'static_pages/home'
     assert_select 'div#error_explanation'
     #succesfull post
+    content = "new test post"
+    picture = fixture_file_upload('test/fixtures/rails.png', 'image/png')
     assert_difference "Micropost.count", 1 do
-      post microposts_path, params: { micropost: { content: "new test post" }}
+      post microposts_path, params: { micropost: { content: content, picture: picture}}
     end
+    post = assigns(:micropost)
+    # below lines ared uplicated in order to try both ways of asserting picture
+    assert post.picture?
+    assert @user1.microposts.first.picture?
     assert_redirected_to root_path
     follow_redirect!
-    assert_select 'span.content', text: "new test post"
+    assert_select 'span.content', text: content
     # Delete post
     assert_difference "Micropost.count", -1 do
       delete micropost_path(@user1.microposts.first)

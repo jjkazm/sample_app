@@ -15,6 +15,9 @@ gem 'bootstrap-sass', '~> 3.3.7'
 gem 'sass-rails', '>= 3.2'
 gem 'jquery-rails'
 
+gem 'carrierwave',  '1.2.2'
+gem 'mini_magick',  '4.7.0'
+
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 
@@ -75,6 +78,7 @@ end
 
 group :production do
   gem 'pg'
+  gem 'fog', '1.42'
 end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
