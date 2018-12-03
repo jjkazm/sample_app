@@ -1,3 +1,4 @@
+require 'fog/aws'
 if Rails.env.production?
   CarrierWave.configure do |config|
   config.fog_provider = 'fog/aws'                        # required
