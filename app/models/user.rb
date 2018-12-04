@@ -1,5 +1,13 @@
 class User < ApplicationRecord
   has_many :microposts, dependent: :destroy
+  has_many :active_relationships, class_name: "Relationship",
+                                  foreign_key: "follower_id",
+                                  dependent: :destroy
+  has_many :followees, through: :active_relationships, source: :followed
+  has_many :passive_relationships, class_name: "Relationship",
+                                  foreign_key: "followed_id",
+                                  dependent: :destroy
+  has_many :followers, through: :passive_relationships
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save :downcase_email
   before_create :create_activation_digest
@@ -84,9 +92,19 @@ class User < ApplicationRecord
     Micropost.where('user_id = ?', id)
   end
 
+  def following?(someone)
+    self.followees.include?(someone)
+  end
+
+  def follow(someone)
+    self.followees << someone
+  end
+
+  def unfollow(someone)
+    self.followees.delete(someone)
+  end
+
   private
-
-
     # Converts email to all lower-case
     def downcase_email
       self.email.downcase!

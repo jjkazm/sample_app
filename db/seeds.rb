@@ -27,3 +27,14 @@ users.each do |user|
     user.microposts.create!(content: content)
   end
 end
+
+
+# Seeding following and followers
+user = User.first
+users = User.all
+
+followers = users[3..40]
+followers.each {|follower| follower.follow(user)}
+
+followees = users[2..50]
+followees.each { |followee| user.follow(followee)}
