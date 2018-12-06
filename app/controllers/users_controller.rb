@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, except:[:new, :create, :index]
-  before_action :logged_in_user, only:[:edit, :update, :index, :destroy]
+  before_action :logged_in_user, only:[:edit, :update, :index, :destroy, :following, :followers]
   before_action :correct_user, only:[:edit, :update]
   before_action :is_admin, only: [:destroy]
 
@@ -50,6 +50,18 @@ class UsersController < ApplicationController
     redirect_to users_path
   end
 
+  def following
+    @title = "Following"
+    @users = @user.followees.paginate(page: params[:page])
+    render 'show_follow'
+  end
+
+  def followers
+    @title = "Followers"
+    @users = @user.followers.paginate(page: params[:page])
+    render 'show_follow'
+  end
+
   private
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation)
@@ -59,7 +71,7 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
     end
 
-  
+
 
     # Checks if user is the same as user on which some action has to be performed
     def correct_user
