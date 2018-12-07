@@ -109,7 +109,7 @@ class UserTest < ActiveSupport::TestCase
     end
 
     # doesn't contain microposts of not followed users
-    kuba.micropostss.each do |post|
+    kuba.microposts.each do |post|
       assert_not jurek.feed.include?(post)
     end
   end
