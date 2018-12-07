@@ -92,4 +92,25 @@ class UserTest < ActiveSupport::TestCase
     agatka.unfollow(jurek)
     assert_not agatka.following?(jurek)
   end
+
+  test 'should inculde relevant microposts in feed' do
+    jurek = users(:jurek)
+    agatka = users(:agatka)
+    kuba = users(:kuba)
+
+    # includes posts from followed user
+    agatka.microposts.each do |post|
+      assert jurek.feed.include?(post)
+    end
+
+    # includes own microposts
+    jurek.microposts.each do |post|
+      assert jurek.feed.include?(post)
+    end
+
+    # doesn't contain microposts of not followed users
+    kuba.micropostss.each do |post|
+      assert_not jurek.feed.include?(post)
+    end
+  end
 end
