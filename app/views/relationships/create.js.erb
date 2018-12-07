@@ -1,0 +1,2 @@
+$("#followers").html('<%= @user.followers.count %>')
+$("#follow_form").replaceWith('<div id="follow_form"><%= j render 'users/unfollow' %></div>')
