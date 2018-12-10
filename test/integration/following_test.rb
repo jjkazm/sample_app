@@ -53,4 +53,11 @@ class FollowingTest < ActionDispatch::IntegrationTest
     end
   end
 
+  test 'feed on Home page' do
+    get root_path
+    @user.feed.paginate(page: 1).each do |post|
+      assert_match post.content, response.body
+    end
+  end
+
 end
